@@ -139,6 +139,10 @@ per_page_options = per_page_select.find_elements(By.XPATH, "./option")
 if results_per_page not in [10, 20, 50, 100, 200]:
     results_per_page = 200
     starting_page = 1  # To prevent confusions
+    print("Invalid value for results_per_page. Using the default values for starting_page and results_per_page...")
+    if log_results:
+        with open(log_file, "w", encoding="UTF-8") as f:
+            f.write(f"Invalid value for results_per_page. Using the default values for starting_page and results_per_page...{new_line}")
 Select(per_page_select).select_by_value(str(results_per_page))
 time.sleep(1)
 
