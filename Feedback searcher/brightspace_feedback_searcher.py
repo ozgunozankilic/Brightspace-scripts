@@ -168,8 +168,9 @@ if len(page_select) > 0:
 else:
     current_page = total_pages = 1
 
-with open(log_file, "w", encoding="UTF-8") as f:
-    f.write(f"Searched for: {search_for}{new_line}{new_line}Results:{new_line}")
+if log_results:
+    with open(log_file, "w", encoding="UTF-8") as f:
+        f.write(f"Searched for: {search_for}{new_line}{new_line}Results:{new_line}")
 print(f"Searching for: {search_for}")
 
 visited = set()
@@ -240,6 +241,5 @@ if log_results:
     print(f"Search results are saved to {log_file}.")
     with open(log_file, "w", encoding="UTF-8") as f:
         f.write(f"{new_line}{found} matches were found in total.{new_line}")
-        f.write(f"Done.{new_line}")
 
 print("Done.")
