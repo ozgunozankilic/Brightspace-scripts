@@ -16,6 +16,6 @@ function round_precised(number, precision) {
 
 $('td.dlay_l').each(function(index, element) {
 	let percentage = round_precised((index+1)/count, 3);
-	$('td.dlay_l')[index].append(" ("+percentage+"%)");
+	$('td.dlay_l')[index].append(" ("+(index+1)+" of "+count+", "+percentage+"%)");
 });
 ```
