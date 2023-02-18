@@ -4,7 +4,7 @@ Some small scripts. I had written some more but forgot to save them. I may add m
 
 ## Add percentage to assignment submissions
 
-While grading submissions using the "Users" tab, assuming you start grading from the top, it shows you your progress by appending the percentages right next to student names. Note that the progress percentage is specific for that page.
+While grading submissions using the "Users" tab, assuming you start grading from the top, it shows you your progress by appending the indices and percentages right next to student names. Note that the progress is specific to that page.
 
 ```JavaScript
 let count = $('td.dlay_l').size();
