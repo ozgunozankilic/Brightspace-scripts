@@ -31,11 +31,19 @@ function distribute_submissions(ta_weights){
 
 	// Prints each TAs assigned student range.
 	Object.keys(ta_weights).forEach(function(ta){ 
+		if (submission_counter >= submissions.length){
+			console.log("No submission left for " + ta);
+			return;
+		}
 		weight = ta_weights[ta];
+		if (weight < 1){
+			console.log("Invalid weight for " + ta);
+			return;
+		}
 		let grade_until = submission_counter + weight;
 		let students = [];
 		let first = submissions[submission_counter].innerText;
-		while (submission_counter < grade_until){
+		while (submission_counter < grade_until && submission_counter < submissions.length){
 			students.push(submissions[submission_counter].innerText);
 			submission_counter += 1;
 		}
