@@ -62,3 +62,31 @@ function distribute_submissions(ta_weights){
 
 distribute_submissions({"TA 1": 10, "TA 2": 20, "TA 3": 30});
 ```
+
+## Sum up the subtotals in feedback
+
+Assuming you have a table in the feedback that has the subtotals per questions, you can use this template to automatically sum up those columns as find the final total:
+
+```JavaScript
+let feedback = document.body.querySelector("d2l-consistent-evaluation").shadowRoot.querySelector("d2l-consistent-evaluation-page").shadowRoot.querySelector("#evaluation-template div:nth-child(3)").querySelector("consistent-evaluation-right-panel").shadowRoot.querySelector("div.d2l-consistent-evaluation-right-panel").querySelector("d2l-consistent-evaluation-right-panel-feedback").shadowRoot.querySelector("d2l-consistent-evaluation-right-panel-block d2l-htmleditor").shadowRoot.querySelector("div.d2l-htmleditor-label-flex-container .d2l-htmleditor-container.d2l-skeletize .d2l-htmleditor-flex-container .d2l-htmleditor-editor-container .tox.tox-tinymce .tox-editor-container .tox-sidebar-wrap .tox-edit-area iframe").contentWindow.document.body.innerHTML;
+
+var feedback_html = document.createElement("div");
+feedback_html.innerHTML = feedback;
+
+let rows = feedback_html.querySelectorAll("table tr");
+let total = 0;
+// Skipping the first row assuming it has the header.
+for (let i = 1; i < rows.length; i++) {
+    // The question grades are in the 5th column (1-indexed).
+    let value = rows[i].querySelectorAll("tr > td:nth-child(5)")[0].textContent.trim();
+    // If the value is not a number, it is ignored.
+    if (!isNaN(value)){ 
+        total += +value; // Type conversion
+        // console.log(value);
+    }
+}
+
+console.log(`Total grade: ${total}`);
+```
+
+Note that it gets a bit complicated when you have a table that has merged cells, which requires some special handling based on the row index and such.
