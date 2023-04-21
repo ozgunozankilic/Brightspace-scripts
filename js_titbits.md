@@ -79,7 +79,7 @@ function calculate_grade(column_id){
 	let total = 0;
 	// Skipping the first row assuming it has the header.
 	for (let i = 1; i < rows.length; i++) {
-	    let value = rows[i].querySelectorAll("tr > td:nth-child(column_id)")[0].textContent.trim();
+	    let value = rows[i].querySelectorAll(`tr > td:nth-child(${column_id})`)[0].textContent.trim();
 	    // If the value is not a number, it is ignored.
 	    if (!isNaN(value)){ 
 		total += +value; // Type conversion
